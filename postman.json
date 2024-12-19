@@ -1,0 +1,180 @@
+{
+    "info": {
+        "name": "Invoice Management API",
+        "_postman_id": "a1b2c3d4-e5f6-7g8h-9i10-j11k12l13m14",
+        "description": "Postman collection for the Invoice Management API. It includes authentication, invoice CRUD operations, and supports employee and admin role-based permissions.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/login",
+                            "host": ["{{base_url}}"],
+                            "path": ["login"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Invoices",
+            "item": [
+                {
+                    "name": "List Invoices",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/invoices?per_page=10&page=1",
+                            "host": ["{{base_url}}"],
+                            "path": ["invoices"],
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Single Invoice",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/invoices/{{invoice_id}}",
+                            "host": ["{{base_url}}"],
+                            "path": ["invoices", "{{invoice_id}}"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Invoice (Admin Only)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"customer_id\": 1,\n  \"invoice_number\": \"INV-001\",\n  \"invoice_date\": \"2024-12-16\",\n  \"amount\": 100.50,\n  \"description\": \"Test invoice\",\n  \"status\": \"pending\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/invoices",
+                            "host": ["{{base_url}}"],
+                            "path": ["invoices"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Invoice",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"amount\": 150.75,\n  \"status\": \"paid\",\n  \"description\": \"Updated description\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/invoices/{{invoice_id}}",
+                            "host": ["{{base_url}}"],
+                            "path": ["invoices", "{{invoice_id}}"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Invoice (Admin Only)",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/invoices/{{invoice_id}}",
+                            "host": ["{{base_url}}"],
+                            "path": ["invoices", "{{invoice_id}}"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost/api"
+        },
+        {
+            "key": "email",
+            "value": "admin@example.com"
+        },
+        {
+            "key": "password",
+            "value": "password"
+        },
+        {
+            "key": "access_token",
+            "value": ""
+        },
+        {
+            "key": "invoice_id",
+            "value": "1"
+        }
+    ]
+}
