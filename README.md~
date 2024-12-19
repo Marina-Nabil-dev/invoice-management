@@ -36,7 +36,7 @@ This is a Laravel-based Invoice Management System that allows users to manage in
 
 ## Installation
 1. Clone the repository:
-- git clone https://github.com/your-repo/invoice-management.git
+- git clone https://github.com/Marina-Nabil-dev/invoice-management.git
 - cd invoice-management
 2. Install Dependencies
  - composer install
@@ -63,3 +63,4 @@ This is a Laravel-based Invoice Management System that allows users to manage in
 - Use an API token for employee and admin roles.
 
 - Authentication: Bearer Token (Use Sanctum for API token-based authentication).
+### Postman Documentation : 
