@@ -12,6 +12,7 @@ class AuthenticateUserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'email' => $this->email,
             'token' => $this->createToken('api')->plainTextToken
         ];
     }
